@@ -20,3 +20,4 @@ selenium-debug.log
 build/Release
 yarn.lock
 package.lock
+src/bascore/proinfo.json
