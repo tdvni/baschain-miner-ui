@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import i18n from './locale'
 
+import vuetify from './plugins/vuetify'
+
+
 import App from './App'
 import router from './router'
 
@@ -16,5 +19,6 @@ global.BasRuntime = new BrowserRuntime(DAppInfo)
 new Vue({
   router,
   i18n,
+  vuetify,
   render: h => h( App ),
 }).$mount('#app')

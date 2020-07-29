@@ -60,10 +60,10 @@ export const i18n = new VueI18n({
  */
 export async function setLocale(locale) {
   if (i18n.locale !== locale) {
-    console.log(`change current locale : "${locale}" .`)
+    // console.log(`change current locale : "${locale}" .`)
     i18n.locale = locale || settings.locale
   } else {
-    console.info(`[locale] "${locale}" is current.`)
+    // console.info(`[locale] "${locale}" is current.`)
   }
   return i18n.locale
 }
