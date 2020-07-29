@@ -3,11 +3,14 @@
 import Vue from 'vue'
 import i18n from './locale'
 
-
 import App from './App'
 import router from './router'
 
+import { DAppInfo } from './bascore'
+import { BrowserRuntime } from './bascore/check-runtime'
+
 Vue.config.productionTip = false
+global.BasRuntime = new BrowserRuntime(DAppInfo)
 
 /* eslint-disable no-new */
 new Vue({

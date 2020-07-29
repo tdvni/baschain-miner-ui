@@ -1,14 +1,14 @@
 export const SUPPORT_TYPES = ['chrome', 'firefox']
 
 export class BrowserRuntime {
-  constructor(ua) {
-    this.ua = ua || window.navigator.userAgent
-    this.info = {}
+  constructor(dappInfo) {
+    this.ua = window.navigator.userAgent
+    this.info = dappInfo || {}
 
     const _info = _parseUserAgent.call(this)
 
     if (_info) {
-      this.info = _info
+      this.info = Object.assign(this.info,_info)
     }
   }
 

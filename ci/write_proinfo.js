@@ -28,9 +28,9 @@ async function writeProInfo ( filePath ) {
 
 
   let infoJson = {
-    name: pkgJson.name || 'Minner-Console',
+    dappname: pkgJson.name || 'Minner-Console',
     author: pkgJson.author || 'tdvni',
-    version:ver,
+    dappverion:ver,
 //    datetime:datetime,
     "build-tag": buildTag,
     description: pkgJson.description ||''
