@@ -4,6 +4,7 @@ const config = require('../config')
 const packageConfig = require('../package.json')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { match } = require('assert')
 
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -63,7 +64,16 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
+    // sass: generateLoaders('sass', { indentedSyntax: true }),
+    // sass-loader ^8.0.0
+    // see https://vuetifyjs.com/zh-Hans/customization/a-la-carte/#vueconfigjs-installation
+    sass: generateLoaders('sass', {
+      implementation: require("sass"),
+      sassOptions: {
+        fiber: require("fibers"),
+        indentedSyntax: true,
+      }
+    }),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
@@ -101,5 +111,13 @@ exports.createNotifierCallback = () => {
       subtitle: filename || '',
       icon: path.join(__dirname, 'logo.png')
     })
+  }
+}
+
+exports.vuetifyOpts = {
+  match(originalTag, { kebabTag, camelTag, path, component }) {
+    if (kebabTag.startsWith('core-')) {
+      return [camelTag, `import ${camelTag} from '@/components/core/${camelTag.substring(4)}.vue'`]
+    }
   }
 }

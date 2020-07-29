@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HelloWorld from '@/components/HelloWorld';
+import constantRoutes from './routes'
 
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
-    },
-  ],
+  mode: 'history',
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes,
 });
+
+export const asyncRoutes = [
+
+]

@@ -15,6 +15,8 @@ const PORT = process.env.PORT && Number(process.env.PORT)
 
 const { VueLoaderPlugin } = require('vue-loader')
 
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: "development",
   module: {
@@ -83,7 +85,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       ]
     }),
     new VueLoaderPlugin(),
-
+    new VuetifyLoaderPlugin(utils.vuetifyOpts),
   ],
 })
 
