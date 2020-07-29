@@ -45,6 +45,36 @@ module.exports = {
       optionalDependencies: ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'quotes': ["off","single"],
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'comma-spacing': 'off',
+    'semi': ["off", "always", { "omitLastInOneLineBlock": true}],
+    "space-in-parens":[0,"always"],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }],
+    "quote-props": ["error","consistent" ],
+    'no-underscore-dangle':"off",
+    "import/no-named-as-default": 0,
+    "comma-dangle": ["warn", {
+      "arrays": "only-multiline",
+      "objects": "only-multiline",
+      "imports": "ignore",
+      "exports": "ignore",
+      "functions": "ignore"
+    }],
+    'no-useless-escape':0,
+    'arrow-parens': ['error', 'as-needed', { "requireForBlockBody": true}],
+    'no-use-before-define': ['error', { "functions": false, "classes": false, "variables": true }],
+    'no-restricted-exports':0,
+    'no-extra-semi':"error",
+    'prefer-object-spread':0,
+    'arrow-body-style': ["off", "as-needed", { "requireReturnForObjectLiteral": false }],
+    'padded-blocks':0,
+    'no-unneeded-ternary':0,
+    'eqeqeq':["off","smart"],
+    "prefer-const": ["warn", {
+      "destructuring": "any",
+      "ignoreReadBeforeAssign": false
+    }],
+    'no-comma-dangle':0,
   }
 }
