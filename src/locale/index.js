@@ -10,7 +10,6 @@ import vuetify from './vuetify'
 
 Vue.use(VueI18n)
 
-
 const messages = {
   en: {
     ...en,

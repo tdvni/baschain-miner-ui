@@ -1,22 +1,9 @@
-import { settings } from '@/config'
-
-const generalState = {
-  /** MetaMask Injected: ethereum.isMetaMask */
-  injected: false,
-  /** chainId: number 1,2,3,42,1337 ed. 0:no network */
-  chainId: null,
-  wallet: null,
-}
-
-/**
- *
- */
-const getDefaultSettings = () => {
-  const settingsDefault = JSON.parse(JSON.stringify(settings))
-  return Object.assign(settingsDefault, generalState)
-}
+import actions from './actions'
+import mutations from './mutations'
 
 const dapp = {
+  actions,
+  mutations,
   getters: {
     web3State: state => ({
       injected: state.injected,
@@ -25,7 +12,13 @@ const dapp = {
     }),
     hasConnected: state => state.injected && state.chainId && state.wallet,
   },
-  state: getDefaultSettings,
+  state: {
+    /** MetaMask Injected: ethereum.isMetaMask */
+    injected: false,
+    /** chainId: number 1,2,3,42,1337 ed. 0:no network */
+    chainId: null,
+    wallet: null,
+  },
 }
 
 export default dapp

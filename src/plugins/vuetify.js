@@ -16,7 +16,7 @@ const opts = {
     options: {
 
     },
-    dark: true,
+    dark: false,
   },
   icons: {
     iconfont: 'mdi',

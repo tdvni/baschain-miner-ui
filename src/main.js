@@ -17,7 +17,7 @@ Vue.config.productionTip = false
 global.BasRuntime = new BrowserRuntime(DAppInfo)
 
 /* eslint-disable no-new */
-new Vue({
+global.dappvue = new Vue({
   i18n,
   store,
   router,

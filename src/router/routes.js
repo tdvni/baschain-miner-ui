@@ -1,30 +1,36 @@
-import Layout from '@/views/layout/MainLayout.vue'
+import Layout from "@/views/layout/DefGlobalLayout.vue";
 
 const constantRoutes = [
   {
-    path: '/landing',
-    name: '/land',
-    component: () => import("@/views/layout/MainLayout.vue"),
-    hidden: true,
+    path: "/home",
+    name: "/home",
+    component: () => import("@/components/HelloWorld.vue"),
+    hidden: true
   },
   {
-    path: '/',
+    path: "/landing",
+    name: "/land",
+    component: () => import("@/views/layout/DefGlobalLayout.vue"),
+    hidden: true
+  },
+  {
+    path: "/",
     component: Layout,
     children: [
       {
-        path: '/dashboard',
-        alias: '/',
-        component: () => import('@/views/dashboard/Index'),
-        name: 'Dashboard',
+        path: "/dashboard",
+        alias: "/",
+        component: () => import("@/views/dashboard/Index"),
+        name: "Dashboard",
         meta: {
-          title: 'route.dashboard',
-          icon: 'mdi-view-dashboard',
+          title: "route.dashboard",
+          icon: "mdi-view-dashboard",
           noCache: true,
-          affix: true,
-        },
-      },
+          affix: true
+        }
+      }
     ]
   }
-]
+];
 
 export default constantRoutes

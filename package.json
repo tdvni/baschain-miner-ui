@@ -16,10 +16,11 @@
     "check:build": "run-s build serve",
     "PI": "node ci/write_proinfo.js",
     "rel:build": "cross-env PRE_REL=0 run-s PI build",
-    "analyz":"webpack-bundle-analyzer build/stats.json ./dist --port 8848"
+    "analyz": "webpack-bundle-analyzer build/stats.json ./dist --port 8848"
   },
   "dependencies": {
     "@mdi/font": "^5.3.45",
+    "path": "^0.12.7",
     "vue": "^2.6.11",
     "vue-count-to": "^1.0.13",
     "vue-i18n": "^8.18.2",
@@ -74,7 +75,6 @@
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "ora": "^1.2.0",
-    "path": "^0.12.7",
     "portfinder": "^1.0.13",
     "postcss-import": "^11.0.0",
     "postcss-loader": "2.0.8",
