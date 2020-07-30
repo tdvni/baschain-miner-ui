@@ -76,5 +76,8 @@ module.exports = {
       "ignoreReadBeforeAssign": false
     }],
     'no-comma-dangle':0,
+    'space-before-function-paren': ['warn', { "anonymous": "never", "named": "never" }],
+    "no-unused-vars": ["error", { "vars": "all", "args": "none", "ignoreRestSiblings": false }],
+    'radix': ["warn","as-needed"],
   }
 }

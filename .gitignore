@@ -21,3 +21,4 @@ build/Release
 yarn.lock
 package.lock
 src/bascore/proinfo.json
+build/stats.json

@@ -11,11 +11,12 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js",
+    "build": "cross-env npm_config_report=true node build/build.js",
     "serve": "lite-server -c ci/bs-config.json",
     "check:build": "run-s build serve",
     "PI": "node ci/write_proinfo.js",
-    "rel:build": "cross-env PRE_REL=0 run-s PI build"
+    "rel:build": "cross-env PRE_REL=0 run-s PI build",
+    "analyz":"webpack-bundle-analyzer build/stats.json ./dist --port 8848"
   },
   "dependencies": {
     "@mdi/font": "^5.3.45",
@@ -46,6 +47,7 @@
     "babel-register": "^6.22.0",
     "chalk": "^2.0.1",
     "chromedriver": "^2.27.2",
+    "compression-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^6.0.3",
     "cross-spawn": "^5.0.1",
     "css-loader": "3.6.0",

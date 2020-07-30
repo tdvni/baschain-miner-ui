@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import i18n from './locale'
+import store from './store'
 
 import vuetify from './plugins/vuetify'
 
@@ -17,8 +18,9 @@ global.BasRuntime = new BrowserRuntime(DAppInfo)
 
 /* eslint-disable no-new */
 new Vue({
-  router,
   i18n,
+  store,
+  router,
   vuetify,
-  render: h => h( App ),
-}).$mount('#app')
+  render: h => h(App)
+}).$mount("#app");

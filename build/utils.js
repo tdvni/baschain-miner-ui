@@ -121,3 +121,14 @@ exports.vuetifyOpts = {
     }
   }
 }
+
+const statsFile = path.resolve(__dirname, "../build/", "stats.json");
+console.log("statsFile", statsFile);
+
+exports.analyzOption = {
+  analyzerMode: "json",
+  analyzerPort: 8900,
+  openAnalyzer: true,
+  statsFilename: statsFile,
+  generateStatsFile: true
+};

@@ -1,4 +1,5 @@
 'use strict'
+const chalk = require("chalk")
 const path = require('path')
 const utils = require('./utils')
 const webpack = require('webpack')
@@ -203,22 +204,29 @@ if (config.build.productionGzip) {
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
+      filename: "[path].gz[query]",
+      algorithm: "gzip",
       test: new RegExp(
-        '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
-        ')$'
+        "\\.(" + config.build.productionGzipExtensions.join("|") + ")$"
       ),
       threshold: 10240,
       minRatio: 0.8
     })
-  )
+  );
 }
 
 if (config.build.bundleAnalyzerReport) {
+  console.log(
+    chalk.magenta(
+      "Open Analyzer",
+      process.env.npm_config_report,
+      "\n you can use [yarn analyz] commands check details."
+    )
+  );
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+  webpackConfig.plugins.push(
+    new BundleAnalyzerPlugin(utils.analyzOption)
+  )
 }
 
 module.exports = webpackConfig
