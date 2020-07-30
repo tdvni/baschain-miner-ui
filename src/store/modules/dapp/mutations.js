@@ -1,7 +1,7 @@
-export const SET_INJECTED = "setInjected"
-export const SET_CHAINID = "setChainId"
-export const SET_WALLET = "setWallet"
-export const SET_WEB3_STATE = "setWeb3State"
+export const SET_INJECTED = "SET_INJECTED";
+export const SET_CHAINID = "SET_CHAINID";
+export const SET_WALLET = "SET_WALLET";
+export const SET_WEB3_STATE = "SET_WEB3_STATE";
 
 
 export default {

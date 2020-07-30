@@ -1,4 +1,4 @@
-export const SET_TOKEN = "setToken"
+export const SET_TOKEN = "SET_TOKEN";
 
 export default {
   [SET_TOKEN](state, token) {

@@ -6,6 +6,7 @@ import {
   NAVBAR_DENSE_TOGGLE,
   NAVBAR_TOGLLE,
   NAVBAR_LOGO_TOGGLE,
+  NAVBAR_STATE,
   FULLSCREEN_TOGGLE,
 } from "./mutations";
 
@@ -29,8 +30,11 @@ const actions = {
   NarbarLogoToggle: ({ commit }) => {
     commit(NAVBAR_LOGO_TOGGLE)
   },
-  FullscreenToggle: ({ commit }) => {
-    commit(FULLSCREEN_TOGGLE)
+  NavbarState: async ({ commit },payload) => {
+    commit(NAVBAR_STATE,payload)
+  },
+  FullscreenToggle: ({ commit },payload) => {
+    commit(FULLSCREEN_TOGGLE,payload)
   },
 }
 

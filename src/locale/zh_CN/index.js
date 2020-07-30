@@ -1,5 +1,5 @@
 import {
-  Code, General, Label,Menu,Page
+  Code,Label,Menu,Page
 } from '../grp-types'
 
 import code from './codes'
@@ -10,9 +10,9 @@ import page from './pages'
 
 
 export default {
+  ...general,
   [Code]: code,
-  [General]: general,
   [Label]: label,
   [Menu]: menu,
   [Page]: page
-}
+};

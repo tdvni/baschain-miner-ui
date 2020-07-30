@@ -9,8 +9,11 @@
 </template>
 
 <script>
+
+
 export default {
-  name: "AdminLayoutContent"
+  name: "AdminLayoutContent",
+  components: { },
 }
 </script>
 <style>

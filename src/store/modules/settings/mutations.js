@@ -1,10 +1,12 @@
-export const SET_SETTINGS = "setSettings"
-export const SET_LOCALE = "setLocale"
-export const TOOLBAR_DENSE_TOGGLE = "toolbarDenseToggle"
-export const NAVBAR_DENSE_TOGGLE = "navbarDenseToggle"
-export const NAVBAR_TOGLLE = "navbarToggle"
-export const NAVBAR_LOGO_TOGGLE = "navbarLogoToggle"
-export const FULLSCREEN_TOGGLE = "fullscreenToggle"
+export const SET_SETTINGS = "SET_SETTINGS";
+export const SET_LOCALE = "SET_LOCALE";
+export const TOOLBAR_DENSE_TOGGLE = "TOOLBAR_DENSE_TOGGLE";
+export const NAVBAR_DENSE_TOGGLE = "NAVBAR_DENSE_TOGGLE";
+export const NAVBAR_TOGLLE = "NAVBAR_TOGLLE";
+export const NAVBAR_LOGO_TOGGLE = "NAVBAR_LOGO_TOGGLE";
+export const NAVBAR_STATE = "NAVBAR_STATE";
+export const FULLSCREEN_TOGGLE = "FULLSCREEN_TOGGLE";
+
 
 const mutations = {
   [SET_SETTINGS](state ,payload) {
@@ -30,6 +32,9 @@ const mutations = {
   },
   [NAVBAR_LOGO_TOGGLE](state) {
     state.navbar.logo = !state.navbar.logo
+  },
+  [NAVBAR_STATE](state,payload) {
+    state.navbar.show = payload.state
   },
   [FULLSCREEN_TOGGLE](state,paylaod) {
     state.fullscreen.show = paylaod.state

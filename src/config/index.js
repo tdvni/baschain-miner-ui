@@ -1,13 +1,13 @@
 
 /** */
 export const settings = {
-  locale: "en",
+  locale: "en",// en,zh,ja
   dense: false,
   footer: false,
   navbar: {
     show: true,
-    dense: false,
-    logo: false
+    dense: true,
+    logo: true,
   },
   fullscreen: {
     show: false,

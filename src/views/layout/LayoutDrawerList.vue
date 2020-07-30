@@ -110,3 +110,14 @@ export default {
   },
 }
 </script>
+<style>
+.layout-drawer {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.layout-drawer__icon {
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+</style>
