@@ -6,13 +6,18 @@ const user = {
   mutations,
   getters: {
     token: state => state.token,
-    name: state => state.name,
+    name: state => state.name || "Admin",
+    user: state => state.user || "",
+    avatar: state => state.avatar || "https://avatars0.githubusercontent.com/u/41780738",
+    status: state => state.status || ""
   },
   state: {
-    token: '',
-    name: '',
-
+    token: "",
+    name: "",
+    user: "",
+    avatar: "",
+    status: ""
   }
-}
+};
 
 export default user

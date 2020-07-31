@@ -7,7 +7,7 @@
     <v-spacer />
     <app-fullscreen />
     <app-localization />
-
+    <app-profile />
   </v-app-bar>
 </template>
 
@@ -16,6 +16,7 @@ import { mapGetters } from 'vuex'
 import AppBreadcrumbs from '../widget/AppBreadcrumbs'
 import AppFullscreen from '../widget/AppFullsrceen'
 import AppLocalization from '../widget/AppLocalization'
+import AppProfile from '../widget/AppProfile'
 
 export default {
   name: "LayoutToolbar",
@@ -23,6 +24,7 @@ export default {
     AppBreadcrumbs,
     AppFullscreen,
     AppLocalization,
+    AppProfile,
   },
   computed: {
     ...mapGetters([

@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    dark fixed app
+    fixed app dark
     :value="navbarShow"
     @input="stateNavbarShow"
     :width="250">

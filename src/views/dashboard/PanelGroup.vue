@@ -6,32 +6,36 @@
       color="orange"
       :start="0"
       :end="126"
-      :duration="1"
+      :duration="5000"
     />
 
     <panel-group-item
-      title="Client Numbers"
-      icon="mdi-vpn"
-      color="orange"
+      title="Client Number"
+      icon="mdi-rocket"
+      color="green"
+      suffix=""
       :start="0"
-      :end="126"
-      :duration="1"
+      :end="16"
+      :duration="1000"
     />
     <panel-group-item
       title="BAS Token"
       icon="mdi-ethereum"
       color="gray"
       :start="0"
-      :end="126"
-      :duration="1"
+      :end="1126.5786"
+      :duration="4000"
+      :decimals="4"
     />
     <panel-group-item
       title="Withdraw Tokens"
       icon="mdi-transfer"
       color="indigo darken-4"
-      :start="200"
-      :end="10000"
-      :duration="1"
+      suffix="GB"
+      :start="2"
+      :end="100"
+      :duration="3000"
+      :decimals="2"
     />
   </v-row>
 </template>

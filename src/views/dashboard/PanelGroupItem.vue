@@ -17,6 +17,8 @@
               :start-val="start"
               :end-val="end"
               :duration="duration"
+              :decimals="decimals"
+              :suffix="suffix"
               class="title font-weight-bold" />
           </v-list-item-subtitle>
         </v-list-item-content>
@@ -42,6 +44,11 @@ export default {
       type: String,
       required: true,
     },
+    suffix: {
+      default: '',
+      type: String,
+      required: false,
+    },
     color: {
       type: String,
       required: false,
@@ -57,11 +64,17 @@ export default {
       type: Number,
       required: false,
     },
+    decimals: {
+      default: 0,
+      type: Number,
+      required : false,
+    },
     duration: {
-      default: 1,
+      default: 1000,
       type: Number,
       required: false,
     },
+
   }
 }
 </script>

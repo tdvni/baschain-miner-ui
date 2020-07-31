@@ -5,7 +5,10 @@ const general = {
     year: "{n} year | {n} years"
   },
   toolbar: {
-    appname: "Pool Console"
+    appname: "Pool Console",
+    profile: "Profile",
+    settings: "Setting",
+    logout: "Logout",
   }
 };
 

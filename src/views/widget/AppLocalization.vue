@@ -9,8 +9,8 @@
         </v-icon>
       </v-btn>
     </template>
-    <v-list class="pa-0">
-      <v-list-item
+    <v-list class="pa-0" dense>
+      <v-list-item dense
         v-for="(item,index) in locales"
         ripple="ripple"
         :target="item.target"
