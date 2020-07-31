@@ -63,21 +63,29 @@ exports.cssLoaders = function (options) {
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    less: generateLoaders('less'),
+    less: generateLoaders("less"),
     // sass: generateLoaders('sass', { indentedSyntax: true }),
     // sass-loader ^8.0.0
     // see https://vuetifyjs.com/zh-Hans/customization/a-la-carte/#vueconfigjs-installation
-    sass: generateLoaders('sass', {
+    sass: generateLoaders("sass", {
       implementation: require("sass"),
       sassOptions: {
         fiber: require("fibers"),
-        indentedSyntax: true,
-      }
+        indentedSyntax: true
+      },
+      prependData: "@import '@/styles/variables.scss'"
     }),
-    scss: generateLoaders('sass'),
-    stylus: generateLoaders('stylus'),
-    styl: generateLoaders('stylus')
-  }
+    scss: generateLoaders("sass", {
+      implementation: require("sass"),
+      sassOptions: {
+        fiber: require("fibers"),
+        indentedSyntax: true
+      },
+      prependData: "@import '@/styles/variables.scss'"
+    }),
+    stylus: generateLoaders("stylus"),
+    styl: generateLoaders("stylus")
+  };
 }
 
 // Generate loaders for standalone style files (outside of .vue)

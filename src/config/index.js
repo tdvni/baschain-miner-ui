@@ -2,7 +2,7 @@
 /** */
 export const settings = {
   locale: "en",// en,zh,ja
-  dense: false,
+  dense: true,
   footer: false,
   navbar: {
     show: true,

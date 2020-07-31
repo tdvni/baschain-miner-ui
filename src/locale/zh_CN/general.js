@@ -5,7 +5,7 @@ const general = {
     year: "年",
   },
   toolbar: {
-    appname: "矿池控制台"
+    appname: "矿池管理"
   }
 }
 

@@ -9,7 +9,7 @@
       dark>
       <v-toolbar-title class="text-center">
         <v-avatar size="32px" title>
-          <img src="static/img/icons/logo_green.png" alt="BASChain"/>
+          <img src="static/img/icons/logo_medium.png" alt="BASChain"/>
         </v-avatar>
         <span class="ml-2">{{ $t('toolbar.appname') }}</span>
       </v-toolbar-title>

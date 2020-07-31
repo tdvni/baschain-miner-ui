@@ -2,10 +2,10 @@ import { General } from "../grp-types"
 
 const general = {
   [General]: {
-    year: "年",
+    year: "年"
   },
   toolbar: {
-    appname: "Miner Pool Console",
+    appname: "プールコンソール"
   }
 };
 
