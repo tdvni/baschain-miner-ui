@@ -67,7 +67,7 @@ export default {
     decimals: {
       default: 0,
       type: Number,
-      required : false,
+      required: false,
     },
     duration: {
       default: 1000,
