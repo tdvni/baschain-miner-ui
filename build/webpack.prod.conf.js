@@ -16,10 +16,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
+
+//console.log("env",env)
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: "production",
@@ -33,84 +36,143 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath("js/[name].[chunkhash].js"),
+    chunkFilename: utils.assetsPath("js/[name].[chunkhash].js") //js/[id].[chunkhash].js
   },
-  externals:{
-
-  },
-  optimization : {
-    runtimeChunk: "single",
-    minimize: env === "production" ? true : false, // only Production Mode compress js
+  optimization: {
+    runtimeChunk: {
+      name: "runtime"
+    },
+    minimize: true, // only Production Mode compress js
     minimizer: [
       new OptimizeCssAssetsPlugin({
         cssProcessorOptions: config.build.productionSourceMap
           ? { safe: true, map: { inline: false } }
           : { safe: true }
+      }),
+      // new ParallelUglifyPlugin({
+      //   cacheDir: ".cache/",
+      //   sourceMap: config.build.productionSourceMap,
+      //   uglifyJS: {
+      //     warnings: false,
+      //     toplevel: false,
+      //     output: {
+      //       beautify: false,
+      //       comments: false
+      //     },
+      //     compress: {
+      //       drop_debugger: true,
+      //       drop_console: true,
+      //       reduce_vars: true
+      //     }
+      //   }
+
+      // }),
+      // new ParallelUglifyPlugin({
+      //   cacheDir: ".cache/",
+      //   sourceMap: config.build.productionSourceMap,
+      //   uglifyES: {
+      //     toplevel: true,
+      //     compress: {
+      //       drop_console: true
+      //     },
+      //     output: {
+      //       beautify: false,
+      //       comments: false,
+      //     }
+      //   }
+      // }),
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            warnings: false,
+            drop_console: true,
+            drop_debugger: true,
+            pure_funcs: ["console.log"] // 移除console
+          }
+        },
+        sourceMap: config.build.productionSourceMap,
+        parallel: true
       })
     ],
     splitChunks: {
       chunks: "all", //officail sugguest
       minSize: 30000, //module >=30k 会被抽离到公共模块,
+      //    minRemainingSize: 0,
+      maxSize: 0,
       minChunks: 1, //module 出现1次就抽离到公共模块
-      maxAsyncRequests: 5, //异步模块,一次最多只能被加载5个,
-      maxInitialRequests: 3, //入口模块最多只能加载3个
+      maxAsyncRequests: 30, //异步模块,一次最多只能被加载5个,
+      maxInitialRequests: 30, //入口模块最多只能加载3个
       name: true, //拆分出来块的名字(Chunk Names)，默认由块名和hash值自动生成；设置为true则表示根据模块和缓存组秘钥自动生成
       automaticNameDelimiter: "~", //打包分隔符
+      enforceSizeThreshold: 50000,
       cacheGroups: {
-        default: {
-          minChunks: 2,
-          reuseExistingChunk: true
+        "vue-vendor": {
+          name: "vue-vendors",
+          test: /[\\/]node_modules[\\/](vuex|vue-i18n)[\\/]/,
+          chunks: "initial",
+          minChunks: 1,
+          priority: 10,
+          reuseExistingChunk: true,
+          enforce: true
         },
         vendors: {
+          name: "vendors",
+          test: /[\\/]node_modules[\\/]/,
           chunks: "all",
-          test: /(vue|vue-i18n|vue-router|vuex)/,
           minChunks: 1,
-          priority: 100,
-          name: "vendors"
+          priority: -10,
+          reuseExistingChunk: true,
+          enforce: true
         },
-        "commons-css": {
-          test: /\.(css|sass|scss)$/,
-          name: "commons-css",
-          chunks: "all",
+        default: {
           minChunks: 2,
-          priority: 90,
+          priority: -20,
           reuseExistingChunk: true
         },
-        //packing 异步加载的lib
-        "async-commons": {
-          chunks: "async",
-          minChunks: 2,
-          priority: 90,
-          name: "async-commons"
-        },
-        //packing third dependencies lib package
-        commons: {
+        "commons-css": {
+          name: "commons-css",
+          test: /.(css|sass|scss)$/,
           chunks: "all",
-          name: "commons",
-          minChunks: 2,
-          priority: 80
+          minChunks: 1,
+          priority: 10,
+          reuseExistingChunk: true
         }
+        //packing 异步加载的lib
+        // "async-commons": {
+        //   chunks: "async",
+        //   minChunks: 2,
+        //   priority: 90,
+        //   name: "async-commons"
+        // },
+        //packing third dependencies lib package
+        // commons: {
+        //   chunks: "all",
+        //   name: "commons",
+        //   minChunks: 2,
+        //   priority: 80
+        // }
       }
     }
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env
+      "process.env": env
     }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        compress: {
-          warnings: false,
-          drop_console: true,
-          drop_debugger: true,
-          pure_funcs: ['console.log'] // 移除console
-        }
-      },
-      sourceMap: config.build.productionSourceMap,
-      parallel: true
-    }),
+    // new UglifyJsPlugin({
+    //   uglifyOptions: {
+    //     compress: {
+    //       warnings: false,
+    //       drop_console: true,
+    //       drop_debugger: true,
+    //       pure_funcs: ["console.log"] // 移除console
+    //     }
+    //   },
+    //   sourceMap: config.build.productionSourceMap,
+    //   parallel: true
+    // }),
+    //
     // extract css into its own file
     // new ExtractTextPlugin({
     //   filename: utils.assetsPath('css/[name].[contenthash].css'),
@@ -135,21 +197,22 @@ const webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: process.env.NODE_ENV === 'testing'
-        ? 'index.html'
-        : config.build.index,
-      template: 'index.html',
+      filename:
+        process.env.NODE_ENV === "testing" ? "index.html" : config.build.index,
+      template: "index.html",
       inject: true,
       favicon: path.resolve("static/logo.png"),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeAttributeQuotes: true,
+        minifyJS: true,
+        minifyCSS: true
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'auto'
+      chunksSortMode: "auto"
     }),
     // keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
@@ -189,15 +252,15 @@ const webpackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, '../static'),
-          to: config.dev.assetsSubDirectory,
+          from: path.resolve(__dirname, "../static"),
+          to: config.dev.assetsSubDirectory
         }
       ]
     }),
     new VueLoaderPlugin(),
-    new VuetifyLoaderPlugin(utils.vuetifyOpts),
+    new VuetifyLoaderPlugin(utils.vuetifyOpts)
   ]
-})
+});
 
 if (config.build.productionGzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin')

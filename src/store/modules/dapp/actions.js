@@ -1,7 +1,7 @@
 import * as Types from './mutations'
 
 const actions = {
-  checkInjected({ commit }) {
+  CheckInjected({ commit }) {
     const injected = window.ethereum && window.ethereum.isMetaMask
 
     commit(Types.SET_INJECTED,injected)

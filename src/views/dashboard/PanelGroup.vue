@@ -16,7 +16,7 @@
       suffix=""
       :start="0"
       :end="16"
-      :duration="1000"
+      :duration="6000"
     />
     <panel-group-item
       title="BAS Token"

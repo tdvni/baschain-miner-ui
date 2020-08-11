@@ -23,7 +23,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     rules: utils.styleLoaders({
       sourceMap: config.dev.cssSourceMap,
       //extract: true,
-      usePostCSS: true
+      usePostCSS: true,
+      hmr: true,
+      reloadAll: true,
     })
   },
   // cheap-module-eval-source-map is faster for development
@@ -31,11 +33,14 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
-    clientLogLevel: 'warning',
+    clientLogLevel: "warning",
     historyApiFallback: {
       rewrites: [
-        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
-      ],
+        {
+          from: /.*/,
+          to: path.posix.join(config.dev.assetsPublicPath, "index.html")
+        }
+      ]
     },
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
@@ -50,20 +55,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     proxy: config.dev.proxyTable,
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
-      poll: config.dev.poll,
+      poll: config.dev.poll
     }
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': require('../config/dev.env')
+      "process.env": require("../config/dev.env")
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
+      filename: "index.html",
+      template: "index.html",
       inject: true,
       favicon: path.resolve("static/logo.png")
     }),
@@ -77,17 +82,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // ]),
     // See new 6.x.x https://webpack.docschina.org/plugins/copy-webpack-plugin/#getting-started
     new CopyWebpackPlugin({
-      patterns:[
+      patterns: [
         {
-          from: path.resolve(__dirname, '../static'),
-          to: config.dev.assetsSubDirectory,
+          from: path.resolve(__dirname, "../static"),
+          to: config.dev.assetsSubDirectory
         }
       ]
     }),
     new VueLoaderPlugin(),
-    new VuetifyLoaderPlugin(utils.vuetifyOpts),
-  ],
-})
+    new VuetifyLoaderPlugin(utils.vuetifyOpts)
+  ]
+});
 
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port

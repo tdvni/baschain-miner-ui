@@ -9,6 +9,7 @@ import { settings } from '@/config'
 import i18n from '@/locale/index'
 import locales from '@/locale/vuetify'
 
+// eslint-disable-next-line
 Vue.use(Vuetify)
 
 const opts = {

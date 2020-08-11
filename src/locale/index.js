@@ -8,6 +8,7 @@ import ja from './ja_JP'
 
 import vuetify from './vuetify'
 
+// eslint-disable-next-line
 Vue.use(VueI18n)
 
 const messages = {
