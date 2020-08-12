@@ -84,7 +84,7 @@ const menus = [
 export default {
   name: "AppProfile",
   computed: {
-    ...mapGetters([
+    ...mapGetters('user',[
       'user',
       'name',
       'avatar',

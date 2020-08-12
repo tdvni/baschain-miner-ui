@@ -2,6 +2,7 @@ import actions from './actions'
 import mutations from './mutations'
 
 const user = {
+  namespaced: true,
   actions,
   mutations,
   getters: {

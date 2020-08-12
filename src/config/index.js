@@ -5,7 +5,7 @@ export const settings = {
   dense: true,
   footer: false,
   navbar: {
-    show: true,
+    show: false,
     dense: true,
     logo: true,
   },

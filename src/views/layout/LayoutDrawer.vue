@@ -36,6 +36,8 @@ export default {
       'navbarShow',
       'navbarDense',
       'toolbarDense',
+    ]),
+    ...mapGetters('permission',[
       'permissionRoutes'
     ])
   },

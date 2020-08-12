@@ -17,10 +17,10 @@ const settings = {
     navbarShow: state => state.navbar.show,
     navbarLogo: state => state.navbar.logo,
     fullscreenShow: state => state.fullscreen.show,
-    fullscreenBtn: state => state.fullscreen.btn,
+    fullscreenBtn: state => state.fullscreen.btn
   },
   mutations,
-  state: getDefaultSettings(),
-}
+  state: getDefaultSettings()
+};
 
 export default settings
