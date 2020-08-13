@@ -8,6 +8,7 @@ import store from './store'
 import App from './App'
 import router from './router'
 import vuetify from "./plugins/vuetify";
+import './router/permission'
 
 import { DAppInfo } from './bascore'
 import { BrowserRuntime } from './bascore/check-runtime'

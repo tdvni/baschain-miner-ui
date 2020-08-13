@@ -7,7 +7,7 @@ Vue.use(Router);
 
 // eslint-disable-next-line
 const router = new Router({
-  // mode: 'history',
+  mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes,
 });

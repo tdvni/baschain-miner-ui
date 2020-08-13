@@ -9,11 +9,14 @@ NProgress.configure({ showSpinner: false });
 
 // Authentication
 
-const whiteList = ["/landing", "/lang"]
-  .concat(Array.from(authRouter), route => route.path)
+const whiteList = ["/index", "/land", "/dashboard", "/"]
+  .concat(Array.from(authRouter, route => route.path))
   .concat(Array.from(authRouter, route => route.alias))
   .filter(route => route);
 
+console.log("whiteList", whiteList);
+
+// eslint-disable-next-line
 function hasPermission(roles, permissionRoles) {
   if (roles.includes("admin")) return true;
 
@@ -29,11 +32,26 @@ router.beforeEach(async (to, from, next) => {
 
   try {
     // determine if there has token
-    console.warn("Router To",to)
+    console.warn("Router To", to.path, store.getters["user/token"]);
+    if (store.getters["user/token"]) {
+      logMsg += "\t[token]";
+
+      next();
+    } else {
+      logMsg += "\t[token]";
+      if (whiteList.includes(to.path)) {
+        logMsg += "\t[whiteList]";
+        next();
+      } else {
+        logMsg += "\t[whiteList]";
+        next(`/singin?redirect=${to.path}`);
+      }
+    }
   } catch (err) {
     console.warn(`[router.beforeEach] \t${to.path}:${err}`);
   }
 
+  // eslint-disable-next-line
   console.log(logMsg, to.path);
   NProgress.done();
 });

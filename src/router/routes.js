@@ -7,15 +7,10 @@ import errorsRouter from './modules/errors'
 
 const mainRoutes = [
   {
-    path: "/home",
-    name: "/home",
-    component: () => import("@/components/HelloWorld.vue"),
-    hidden: false
-  },
-  {
-    path: "/landing",
-    name: "/land",
-    component: () => import("@/views/layout/DefGlobalLayout.vue"),
+    path: "/land",
+    name: "home.index",
+    alias: "/index",
+    component: () => import("@/views/auth/Landing.vue"),
     hidden: true
   },
   {
